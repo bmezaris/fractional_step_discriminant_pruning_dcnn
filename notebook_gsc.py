@@ -566,10 +566,6 @@ class Mask:
             ahh.remove()
             del ahh
 
-        #for hhkey in hh:
-        #    hh[hhkey].remove()
-        #    hh[hhkey] = None
-
         # compute discriminant score for each filter
         dnp = np.zeros((L, fmx), dtype=np.float64)
         NN = self.NN.double()
@@ -678,8 +674,6 @@ class Mask:
             last_index = 327
         # to jump the last fc layer
         self.mask_index = [x for x in range(0, last_index, 3)]
-
-    #        self.mask_index =  [x for x in range (0,330,3)]
 
     def init_mask(self, keep_rate_cs, compress_rate_fpgm, scaling_factor):
 
