@@ -498,10 +498,6 @@ class Mask:
             ahh.remove()
             del ahh
 
-        #for hhkey in hh:
-        #    hh[hhkey].remove()
-        #    hh[hhkey] = None
-
         # compute discriminant score for each filter
         dnp = np.zeros((L, fmx), dtype=np.float64)
         NN = self.NN.double()
