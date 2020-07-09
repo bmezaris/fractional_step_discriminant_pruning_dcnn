@@ -271,11 +271,11 @@ def main():
         if epoch % args.epoch_prune == 0 or epoch == args.epochs - 1:
             m.model = net
             m.set_curr_epoch(epoch)
-            m.if_zero()
+            # m.if_zero()
             m.init_mask(keep_rate_cs[epoch], compress_rates_fpgm[epoch], scalling_factors[epoch])
             m.do_mask()
             m.do_similar_mask()
-            m.if_zero()
+            # m.if_zero()
             net = m.model
             if args.use_cuda:
                 net = net.cuda()
@@ -532,7 +532,7 @@ class Mask:
                 del aX
 
             niter += 1
-            print('CS criterion, iteration : {}'.format(niter))
+            # print('CS criterion, iteration : {}'.format(niter))
             if niter == self.max_iter_cs:
                 break
 
@@ -564,7 +564,7 @@ class Mask:
                 dnp[l, f] = torch.trace(Sb).detach().cpu().numpy()
 
         time2 = time.time()
-        print('CS criterion>> Exiting; Time needed (secs) {}'.format( (time2 - time1) ))
+        # print('CS criterion>> Exiting; Time needed (secs) {}'.format( (time2 - time1) ))
 
         return dnp, index2layer, conv_size
 
@@ -597,7 +597,7 @@ class Mask:
     # optimize for fast ccalculation
     def get_filter_similar(self, index, weight_torch, compress_rate_gm, keep_rate_cs, scaling_factor, filter_index_sorted_da, length):
 
-        print('Pruning rates: CS {} GM {}'.format(1- keep_rate_cs, compress_rate_gm))
+        # print('Pruning rates: CS {} GM {}'.format(1- keep_rate_cs, compress_rate_gm))
 
         codebook = np.ones(length)
         if len(weight_torch.size()) == 4:
@@ -614,8 +614,7 @@ class Mask:
             similar_small_index = similar_sum.argsort()[:  similar_pruned_num]
             similar_index_for_filter = [filter_large_index[i] for i in similar_small_index]
 
-            print('GM criterion, selected filters | Layer idx - prune filter idx - alpha: {} - {} - {}'.format(
-                index, similar_index_for_filter, scaling_factor))
+            # print('GM criterion, selected filters | Layer idx - prune filter idx - alpha: {} - {} - {}'.format(index, similar_index_for_filter, scaling_factor))
 
             kernel_length = weight_torch.size()[1] * weight_torch.size()[2] * weight_torch.size()[3]
             for x in range(0, len(similar_index_for_filter)):
@@ -661,7 +660,7 @@ class Mask:
 
     def init_mask(self, keep_rate_cs, compress_rate_fpgm, scaling_factor):
 
-        print('Pruning rates: CS {} GM {}'.format(1 - keep_rate_cs, compress_rate_fpgm))
+        # print('Pruning rates: CS {} GM {}'.format(1 - keep_rate_cs, compress_rate_fpgm))
 
         self.init_rate(keep_rate_cs, compress_rate_fpgm)
 
@@ -696,8 +695,7 @@ class Mask:
                         filter_index_selected = self.fselected_prune[prmFiltIdx]
                         filter_index_sorted = self.filter_index_sorted[prmFiltIdx]
 
-                    print('CS criterion, selected filters | Layer idx - prune filter idx - alpha: {} - {} - {}'.format(
-                        prmFiltIdx, filter_index_selected, scaling_factor))
+                    # print('CS criterion, selected filters | Layer idx - prune filter idx - alpha: {} - {} - {}'.format(prmFiltIdx, filter_index_selected, scaling_factor))
 
                     if filter_pruned_num > 0:
                         kernel_length = weight_torch.size()[1] * weight_torch.size()[2] * weight_torch.size()[3]
