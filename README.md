@@ -11,7 +11,7 @@ and, b) a Geometric Median-based (GM-based) criterion, as the one described in [
 
 2. Similarly to [1] we apply an asymptotic pruning schedule. However, not only the number of selected filters (as in [1]) but also their weights vary asymptotically to their target value.
 
-This implementation extents the implementation of [Filter Pruning via Geometric Median (FPGM)] (https://github.com/he-y/filter-pruning-geometric-median) [2].
+This implementation extents the implementation of [Filter Pruning via Geometric Median (FPGM)](https://github.com/he-y/filter-pruning-geometric-median) [2].
 
 
 ## Dependencies
