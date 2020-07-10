@@ -28,8 +28,7 @@ python notebook_cifar.py --dataset cifar10 --arch resnet20 --prune_rate_cs 0.1 -
 
 python notebook_imagenet.py --dataset imagenet --arch resnet56 --prune_rate_cs 0.1 --prune_rate_gm 0.4 --data_path datasets\ILSVRC2012 --save_path snapshots/fsdp-imgnet-resnet56-rate50 --epochs 40 --schedule 1 10 20 30 --gammas 1 0.1 0.1 0.1 --learning_rate 0.01 --decay 0.0005 --batch_size 128
 
-
-python notebook_gsc.py --dataset gsc --arch resnet56 --prune_rate_cs 0.1 --prune_rate_gm 0.4 --data_path datasets\gsc --save_path snapshots/fsdp-gsc-resnet56-rate50 --epochs 70 --schedule 50 --gammas 0.1 --learning_rate 0.0001 --decay 0.01 --batch_size 128
+python notebook_gsc.py --dataset gsc --arch resnet56 --prune_rate_cs 0.1 --prune_rate_gm 0.4 --data_path datasets\gsc --save_path snapshots/fsdp-gsc-resnet56-rate50 --epochs 70 --schedule 50 --gammas 0.1 --learning_rate 0.01 --decay 0.0005 --batch_size 96
 
 ## License and Citation
 
