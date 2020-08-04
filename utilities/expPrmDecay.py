@@ -23,6 +23,7 @@ def cmpAsymptoticSchedule(theta3=.5, e3=199, tau=8., theta_cs_final = .1, , scal
               e3: 3d point for epoch (last epoch starting from 0)
               tau: determines the epoch (i.e. 1/tau of the total epochs) where the pruning rate reaches 75% of the final pruning rate
               theta_cs_final: final pruning rate associated with the CS criterion
+              scaling_attn: attenuation parameter for scaling factors 
 
        Returns:
               thetas: total pruning rate per epoch
