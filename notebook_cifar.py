@@ -63,6 +63,7 @@ parser.add_argument('--use_zero_scaling', dest='use_zero_scaling', action='store
 parser.add_argument('--max_iter_cs', type=int, default=10000, help='maximum number of batch iterations for cs criterion')
 parser.add_argument('--epoch_apply_cs', type=int, default=range(0, 200, 2), help='epochs to apply the cs criterion')
 parser.add_argument('--tau', type=float, default=10., help='parameter tau for computing the asymptotic pruning schedule')
+parser.add_argument('--scaling_attenuation', type=float, default=1., help='global attenuation factor for weights')
 parser.add_argument('--prune_rate_cs', type=float, default=0.1, help='final pruning rate for cs criterion')
 parser.add_argument('--prune_rate_gm', type=float, default=0.4, help='the reducing ratio of pruning based on Distance')
 
@@ -176,7 +177,7 @@ def main():
     # asymptotic schedule
     total_pruning_rate = args.prune_rate_gm + args.prune_rate_cs
     compress_rates_total, scalling_factors, compress_rates_cs, compress_rates_fpgm, e2 =\
-        cmpAsymptoticSchedule(theta3=total_pruning_rate, e3=args.epochs-1, tau=args.tau, theta_cs_final = args.prune_rate_cs) # tau=8.
+        cmpAsymptoticSchedule(theta3=total_pruning_rate, e3=args.epochs-1, tau=args.tau, theta_cs_final=args.prune_rate_cs, scaling_attn=args.scaling_attenuation) # tau=8.
     keep_rate_cs = 1. - compress_rates_cs
 
     if args.use_zero_scaling:
