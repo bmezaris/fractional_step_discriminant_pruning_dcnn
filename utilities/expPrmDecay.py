@@ -15,7 +15,7 @@ import numpy as np
 import time
 
 
-def cmpAsymptoticSchedule(theta3=.5, e3=199, tau=8., theta_cs_final = .1, , scaling_attn=1.):
+def cmpAsymptoticSchedule(theta3=.5, e3=199, tau=8., theta_cs_final = .1, scaling_attn=1.):
        """Computes an asymptotic pruning schedule for the number of filters and their weights.
 
        Args:
